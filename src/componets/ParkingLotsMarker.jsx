@@ -3,6 +3,13 @@ import L from "leaflet";
 
 export const ParkingLotsMarker = ({parkingLot}) => {
 
+    const lat = parkingLot.attributes.latitude;
+    const lng = parkingLot.attributes.longitude;
+
+    const openGoogleMaps = () => {
+        window.open(`https://www.google.com/maps/search/?api=1&query=${lat}%2C${lng}`);
+    }
+
     function newIcon () {
         return L.icon({
             iconUrl: "https://s3.sa-east-1.amazonaws.com/dev.se360.co/parking-sign-2526.png",
@@ -10,9 +17,12 @@ export const ParkingLotsMarker = ({parkingLot}) => {
         })
     }
     return(
-        <Marker position={[parkingLot.attributes.latitude, parkingLot.attributes.longitude]} icon={newIcon()}>
+        <Marker position={[lat, lng]} icon={newIcon()}>
             <Popup>
-                {parkingLot.attributes.name}
+                <div className="flex flex-col items-center hover:cursor-pointer" onClick={openGoogleMaps}>
+                    {parkingLot.attributes.name}
+                    <a>Click to go</a>
+                </div>
             </Popup>
         </Marker>
     )
