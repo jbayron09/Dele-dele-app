@@ -19,9 +19,9 @@ export const ParkingLotsMarker = ({parkingLot}) => {
     return(
         <Marker position={[lat, lng]} icon={newIcon()}>
             <Popup>
-                <div className="flex flex-col items-center hover:cursor-pointer" onClick={openGoogleMaps}>
+                <div className="flex flex-col items-center hover:cursor-pointer">
                     {parkingLot.attributes.name}
-                    <a>Click to go</a>
+                    <button onClick={openGoogleMaps}>Click to go</button>
                 </div>
             </Popup>
         </Marker>
